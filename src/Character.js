@@ -22,14 +22,14 @@ class Characters extends React.Component {
   
   render() {
     return (
-        this.state.list.map(each => {
-          return (
-            <Link key={each.id} to={`/${each.id}`}>
-              <h2>{each.name}</h2>
-              <img src={each.image} alt=""/>
-            </Link>
-          )
-        })
+      this.state.list.map(each => {
+        return (
+          <Link key={each.id} to={`/${each.id}`}>
+            <h2>{each.name}</h2>
+            <img src={each.image} alt=""/>
+          </Link>
+        )
+      })
     )
   }
 }

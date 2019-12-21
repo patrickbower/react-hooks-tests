@@ -6,10 +6,10 @@ export const GoGet = (url) => {
     })
 }
 
-export function urlAll() {
+export const urlAll = () => {
   return `https://rickandmortyapi.com/api/character`
 }
 
-export function urlOne(id) {
+export const urlOne = id => {
   return `https://rickandmortyapi.com/api/character/${id}`
 }
