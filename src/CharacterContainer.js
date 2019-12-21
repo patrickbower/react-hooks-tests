@@ -1,29 +1,23 @@
-import React from 'react'
-import { withRouter } from "react-router-dom"
+import React, { useState, useEffect } from 'react'
 import {GoGet, urlOne} from './Ajax';
 import CharacterDetail from './CharacterDetail'
 
-class CharacterContainer extends React.Component {
-  constructor(){
-    super()
+const CharacterContainer = props => {
 
-    this.state = {
-      character: {}
-    }
-  }
+  const [character, setCharacter] = useState([]); 
+  const { id } = props.match.params;
 
-  componentDidMount() {
-    GoGet(urlOne(this.props.match.params.id))
-      .then(data => {
-        this.setState({
-          character: data
-        })
-      });
-  }
+  const fetchCharacter = async () => {
+    const response = await GoGet(urlOne(id));
+    setCharacter(response);
+  };
 
-  render() {
-    return <CharacterDetail character={this.state.character} />
-  }
+  useEffect(() => {
+    fetchCharacter()
+    }, []
+  );
+
+  return <CharacterDetail character={character} />
 }
 
-export default withRouter(CharacterContainer);
+export default CharacterContainer;

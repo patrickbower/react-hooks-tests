@@ -4,40 +4,24 @@ import {Link} from 'react-router-dom';
 
 const Characters = () => {
 
-  // const state = {
-  //   list: []
-  // }
-
-  const [list, setList] = useState([]);
-  
-  // componentDidMount() {
-    //   GoGet(urlAll())
-    //     .then(data => {
-      //       this.setState({
-        //         list: data.results
-        //       })
-        //     });
-        // }
-  
-
-  const getAllCharacters = () => {
-    return GoGet(urlAll())
-      .then(data => {
-          return data.results
-        });
-  }
+  const [list, setList] = useState([]);  
         
-  useEffect(() => {
-    getAllCharacters().then(data => { console.log(data) });
-  },[]);
+  const fetchCharacters = async () => {
+    const response = await GoGet(urlAll());
+    setList(response.results)
+  };
 
+  useEffect(() => {
+    fetchCharacters()
+    }, []
+  );
 
   return (
-    list.map(each => {
+    list.map(listItem => {
       return (
-        <Link key={each.id} to={`/${each.id}`}>
-          <h2>{each.name}</h2>
-          <img src={each.image} alt=""/>
+        <Link key={listItem.id} to={`/${listItem.id}`}>
+          <h2>{listItem.name}</h2>
+          <img src={listItem.image} alt=""/>
         </Link>
       )
     })
