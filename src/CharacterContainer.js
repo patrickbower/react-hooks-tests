@@ -3,7 +3,7 @@ import CharacterDetail from './CharacterDetail'
 
 const CharacterContainer = props => {
 
-  const [character, setCharacter] = useState([]); 
+  const [ character, setCharacter ] = useState([]); 
   const { id } = props.match.params;
 
   const fetchCharacter = async () => {
