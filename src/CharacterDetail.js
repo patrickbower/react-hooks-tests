@@ -1,14 +1,12 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 const CharacterDetail = (props) => {
   return (
-    <div>
-      <h2>{props.character.name}</h2>
+    <React.Fragment>
+      <h2>{props.character.id}. {props.character.name}</h2>
       <img src={props.character.image} alt=""/>
-      <br/>
-      <Link to="/">Back</Link>
-    </div>
+      {props.children}
+    </React.Fragment>
   )
 }
 

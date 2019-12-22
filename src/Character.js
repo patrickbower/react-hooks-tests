@@ -5,26 +5,28 @@ const Characters = () => {
 
   const [list, setList] = useState([]);  
         
-  const fetchCharacters = async () => {
-    const response = await fetch(`https://rickandmortyapi.com/api/character`);
-    const myJson = await response.json();
-    setList(myJson.results);
-  };
-
   useEffect(() => {
-    fetchCharacters()
-    }, []
-  );
+    async function fetchCharacters() {
+      const response = await fetch(`https://rickandmortyapi.com/api/character`);
+      const myJson = await response.json();
+      setList(myJson);
+    }
+    fetchCharacters();
+  }, []);
 
   return (
-    list.map(listItem => {
-      return (
-        <Link key={listItem.id} to={`/${listItem.id}`}>
-          <h2>{listItem.name}</h2>
-          <img src={listItem.image} alt=""/>
-        </Link>
-      )
-    })
+    <ol>
+      { list.map(listItem => {
+        return (
+          <li>
+            <Link key={listItem.id} to={`/${listItem.id}`}>
+              <h2>{listItem.name}</h2>
+              <img src={listItem.image} alt=""/>
+            </Link>
+          </li>
+        )
+      }) }
+    </ol> 
   )
 }
 
