@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import {GoGet, urlOne} from './Ajax';
 import CharacterDetail from './CharacterDetail'
 
 const CharacterContainer = props => {
@@ -8,8 +7,9 @@ const CharacterContainer = props => {
   const { id } = props.match.params;
 
   const fetchCharacter = async () => {
-    const response = await GoGet(urlOne(id));
-    setCharacter(response);
+    const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+    const myJson = await response.json();
+    setCharacter(myJson);
   };
 
   useEffect(() => {

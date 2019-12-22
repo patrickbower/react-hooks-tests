@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {GoGet, urlAll} from './Ajax';
 import {Link} from 'react-router-dom';
 
 const Characters = () => {
@@ -7,8 +6,9 @@ const Characters = () => {
   const [list, setList] = useState([]);  
         
   const fetchCharacters = async () => {
-    const response = await GoGet(urlAll());
-    setList(response.results)
+    const response = await fetch(`https://rickandmortyapi.com/api/character`);
+    const myJson = await response.json();
+    setList(myJson.results);
   };
 
   useEffect(() => {
