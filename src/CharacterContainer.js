@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 const CharacterContainer = props => {
 
-  const [ character, setCharacter ] = useState(null); 
+  const [ character, setCharacter ] = useState({}); 
   const { id } = props.match.params;
 
   useEffect(() => {
@@ -18,9 +18,10 @@ const CharacterContainer = props => {
 
   return <CharacterDetail 
     character={character} 
-    children={
-      <Link to="/">Back</Link>
-    }/>
+    children={[
+      <Link key="a" to="/">Back</Link>,
+      <Link key="b" to={`/${parseInt(id) + 1}`}>Next</Link>
+    ]}/>
 }
 
 export default CharacterContainer;

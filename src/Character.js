@@ -9,24 +9,23 @@ const Characters = () => {
     async function fetchCharacters() {
       const response = await fetch(`https://rickandmortyapi.com/api/character`);
       const myJson = await response.json();
-      setList(myJson);
+      setList(myJson.results);
     }
     fetchCharacters();
   }, []);
 
   return (
-    <ol>
+    <ul>
       { list.map(listItem => {
         return (
-          <li>
-            <Link key={listItem.id} to={`/${listItem.id}`}>
+          <li key={listItem.id}>
+            <Link to={`/${listItem.id}`}>
               <h2>{listItem.name}</h2>
               <img src={listItem.image} alt=""/>
             </Link>
-          </li>
-        )
-      }) }
-    </ol> 
+          </li> )
+      })}
+    </ul> 
   )
 }
 
